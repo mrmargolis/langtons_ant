@@ -74,7 +74,6 @@ class Ant
   def move_forward!
     move = FACING_MAP[@facing]
     @position = [@position[0] + move[0], @position[1] + move[1]] 
-    @position[0] = @position[0] > 100 ? 100 : @position[0]
   end
 end
 
