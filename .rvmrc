@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+environment_id="jruby-1.7.0.preview2@ruby_quiz"
+rvm --create  "$environment_id"
+
