@@ -23,8 +23,7 @@ class Board
   BLACK = -1 
 
   def initialize
-    @cells = []
-    HEIGHT.times { |x| @cells << Array.new(WIDTH, 1) } 
+    @cells = Array.new(HEIGHT) {|index| Array.new(WIDTH, 1) }
   end
 
   def color_at(position)
