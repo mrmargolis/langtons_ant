@@ -98,6 +98,7 @@ class AntSimulationDisplay < Processing::App
     50.times { @sim.tick! }
   end
 
+  private
   def draw_cell(row, col)
     if @sim.board.color_at([row, col]) == Board::WHITE
       fill 255 
