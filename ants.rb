@@ -34,7 +34,7 @@ class Board
   def toggle_cell!(position)
     x = position[0]
     y = position[1]
-    @cells[x][y] = @cells[x][y] * -1
+    @cells[x][y] *= -1
   end
 
   def does_not_contain?(position)
