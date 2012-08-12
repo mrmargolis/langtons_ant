@@ -50,8 +50,8 @@ class Ant
 
   FACING_MAP = { 0 => NORTH, 1 => EAST, 2 => SOUTH, 3 => WEST }
 
-  LEFT = 'left'
-  RIGHT = 'right'
+  LEFT = :left
+  RIGHT = :right
 
   TURN_MAP = { LEFT => -1, RIGHT => 1 }
 
