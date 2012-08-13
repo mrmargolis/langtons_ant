@@ -58,18 +58,18 @@ describe Board do
   it 'starts off all white' do
     Board::HEIGHT.times do |row|
       Board::WIDTH.times do |col|
-        board.color_at([row, col]).should == Board::WHITE
+        board.white_cell_at?([row, col]).should be_true
       end
     end
   end
 
   it 'can toggle a cell' do
     pos = [1, 1]
-    board.color_at(pos).should == Board::WHITE
+    board.white_cell_at?(pos).should be_true
     board.toggle_cell!(pos)
-    board.color_at(pos).should == Board::BLACK
+    board.black_cell_at?(pos).should be_true
     board.toggle_cell!(pos)
-    board.color_at(pos).should == Board::WHITE
+    board.white_cell_at?(pos).should be_true
   end
 end
 
@@ -88,6 +88,6 @@ describe AntSimulation do
   it 'can tick through the simulation' do
     simulation.tick!
     ant.position.should == [50, 51]
-    board.color_at([50, 50]).should == Board::BLACK
+    board.black_cell_at?([50, 50]).should be_true
   end
 end

@@ -7,7 +7,7 @@ require 'ruby-processing'
 class AntSimulation < Struct.new(:board, :ant)
   def tick!
     return false if board.does_not_contain?(ant.position)
-    if board.color_at(ant.position) == Board::BLACK
+    if board.black_cell_at?(ant.position)
       ant.turn_left!
     else
       ant.turn_right!
@@ -26,8 +26,12 @@ class Board
     @cells = Array.new(HEIGHT) {|index| Array.new(WIDTH, 1) }
   end
 
-  def color_at(position)
-    @cells[position[0]][position[1]]
+  def white_cell_at?(position)
+    color_at(position) == WHITE
+  end
+
+  def black_cell_at?(position)
+    color_at(position) == BLACK
   end
 
   def toggle_cell!(position)
@@ -39,6 +43,12 @@ class Board
   def does_not_contain?(position)
     position.include?(-1) || position.include?(HEIGHT)
   end
+
+  private
+  def color_at(position)
+    @cells[position[0]][position[1]]
+  end
+
 end
 
 class Ant
@@ -108,7 +118,7 @@ class AntSimulationDisplay < Processing::App
 
   private
   def draw_cell(row, col)
-    if @sim.board.color_at([row, col]) == Board::WHITE
+    if @sim.white_cell_at?([row, col])
       fill 255 
     else
       fill 0, 0, 0
