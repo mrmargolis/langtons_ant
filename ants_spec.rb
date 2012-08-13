@@ -12,24 +12,24 @@ describe Ant do
   end
 
   it 'can turn right to face a different direction' do
-    ant.turn(Ant::RIGHT)
+    ant.turn_right!
     ant.facing.should == Ant::EAST
-    ant.turn(Ant::RIGHT)
+    ant.turn_right!
     ant.facing.should == Ant::SOUTH
-    ant.turn(Ant::RIGHT)
+    ant.turn_right!
     ant.facing.should == Ant::WEST
-    ant.turn(Ant::RIGHT)
+    ant.turn_right!
     ant.facing.should == Ant::NORTH
   end
 
   it 'can turn left to face a different direction' do
-    ant.turn(Ant::LEFT)
+    ant.turn_left!
     ant.facing.should == Ant::WEST
-    ant.turn(Ant::LEFT)
+    ant.turn_left!
     ant.facing.should == Ant::SOUTH
-    ant.turn(Ant::LEFT)
+    ant.turn_left!
     ant.facing.should == Ant::EAST
-    ant.turn(Ant::LEFT)
+    ant.turn_left!
     ant.facing.should == Ant::NORTH
   end
 
@@ -38,10 +38,10 @@ describe Ant do
     ant.position.should == [51, 50]
     ant.move_forward!
     ant.position.should == [52, 50]
-    ant.turn(Ant::LEFT)
+    ant.turn_left!
     ant.move_forward!
     ant.position.should == [52, 49]
-    ant.turn(Ant::LEFT)
+    ant.turn_left!
     ant.move_forward!
     ant.position.should == [51, 49]
   end

@@ -8,9 +8,9 @@ class AntSimulation < Struct.new(:board, :ant)
   def tick!
     return false if board.does_not_contain?(ant.position)
     if board.color_at(ant.position) == Board::BLACK
-      ant.turn(Ant::LEFT)
+      ant.turn_left!
     else
-      ant.turn(Ant::RIGHT)
+      ant.turn_right!
     end
     board.toggle_cell!(ant.position)
     ant.move_forward!
@@ -41,7 +41,6 @@ class Board
   end
 end
 
-
 class Ant
   NORTH = [1, 0]
   SOUTH = [-1, 0]
@@ -66,14 +65,24 @@ class Ant
     FACING_MAP[@facing]
   end
 
-  def turn(direction)
-    @facing = (@facing + TURN_MAP[direction]) % 4
+  def turn_left!
+    turn(Ant::LEFT)
+  end
+
+  def turn_right!
+    turn(Ant::RIGHT)
   end
 
   def move_forward!
     move = FACING_MAP[@facing]
     @position = [@position[0] + move[0], @position[1] + move[1]] 
   end
+
+  private
+  def turn(direction)
+    @facing = (@facing + TURN_MAP[direction]) % 4
+  end
+
 end
 
 class AntSimulationDisplay < Processing::App
@@ -94,7 +103,7 @@ class AntSimulationDisplay < Processing::App
       end
     end
     draw_ant
-    50.times { @sim.tick! }
+    20.times { @sim.tick! }
   end
 
   private
