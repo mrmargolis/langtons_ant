@@ -118,7 +118,7 @@ class AntSimulationDisplay < Processing::App
 
   private
   def draw_cell(row, col)
-    if @sim.white_cell_at?([row, col])
+    if @board.white_cell_at?([row, col])
       fill 255 
     else
       fill 0, 0, 0
