@@ -100,7 +100,7 @@ class Ant
 end
 
 class AntSimulationDisplay < Processing::App
-  BOX_SIZE = 12 
+  BOX_SIZE = 10 
 
   def setup
     frame_rate 100 
