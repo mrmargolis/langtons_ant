@@ -90,4 +90,13 @@ describe AntSimulation do
     ant.position.should == [50, 51]
     board.black_cell_at?([50, 50]).should be_true
   end
+
+  it 'can tell when the ant is on the board' do
+    simulation.ant_on_board?.should be_true
+  end
+
+  it 'can tell when the ant is not on the board' do
+    ant.stub(:position).and_return([10, 101])
+    simulation.ant_on_board?.should be_false
+  end
 end

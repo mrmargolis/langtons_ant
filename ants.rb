@@ -6,7 +6,7 @@ require 'ruby-processing'
 
 class AntSimulation < Struct.new(:board, :ant)
   def tick!
-    return false if board.does_not_contain?(ant.position)
+    return unless ant_on_board?
     if board.black_cell_at?(ant.position)
       ant.turn_left!
     else
@@ -14,6 +14,10 @@ class AntSimulation < Struct.new(:board, :ant)
     end
     board.toggle_cell!(ant.position)
     ant.move_forward!
+  end
+
+  def ant_on_board?
+    board.contains?(ant.position)
   end
 end
 
@@ -40,8 +44,8 @@ class Board
     @cells[x][y] *= -1
   end
 
-  def does_not_contain?(position)
-    position.include?(-1) || position.include?(HEIGHT)
+  def contains?(position)
+    position[0].between?(-1, WIDTH) && position[1].between?(-1, HEIGHT)
   end
 
   private
@@ -107,13 +111,18 @@ class AntSimulationDisplay < Processing::App
   end
   
   def draw
-    Board::HEIGHT.times do |row|
-      Board::WIDTH.times do |col|
-        draw_cell(row, col)
+    if @sim.ant_on_board?
+      Board::HEIGHT.times do |row|
+        Board::WIDTH.times do |col|
+          draw_cell(row, col)
+        end
       end
+      draw_ant
+    else
+      save("ants.png");
+      exit
     end
-    draw_ant
-    20.times { @sim.tick! }
+    50.times { @sim.tick! }
   end
 
   private
