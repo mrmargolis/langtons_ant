@@ -45,7 +45,7 @@ class Board
   end
 
   def contains?(position)
-    position[0].between?(-1, WIDTH) && position[1].between?(-1, HEIGHT)
+    position[0].between?(-1, WIDTH - 1) && position[1].between?(-1, HEIGHT - 1)
   end
 
   private
@@ -118,11 +118,11 @@ class AntSimulationDisplay < Processing::App
         end
       end
       draw_ant
+      50.times { @sim.tick! }
     else
       save("ants.png");
       exit
     end
-    50.times { @sim.tick! }
   end
 
   private

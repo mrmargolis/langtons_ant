@@ -96,7 +96,7 @@ describe AntSimulation do
   end
 
   it 'can tell when the ant is not on the board' do
-    ant.stub(:position).and_return([10, 101])
+    ant.stub(:position).and_return([10, 100])
     simulation.ant_on_board?.should be_false
   end
 end
