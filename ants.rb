@@ -103,7 +103,7 @@ class AntSimulationDisplay < Processing::App
   BOX_SIZE = 10 
 
   def setup
-    frame_rate 100 
+    frame_rate 30 
     stroke  100, 100, 100  #cell outline stroke
     @ant = Ant.new(50, 50)
     @board = Board.new
@@ -118,6 +118,7 @@ class AntSimulationDisplay < Processing::App
         end
       end
       draw_ant
+      draw_frame_rate
       50.times { @sim.tick! }
     else
       save("ants.png");
@@ -138,6 +139,13 @@ class AntSimulationDisplay < Processing::App
   def draw_ant
     fill 230, 40, 0
     rect(@ant.position[0] * BOX_SIZE, @ant.position[1] * BOX_SIZE, BOX_SIZE, BOX_SIZE)
+  end
+
+  def draw_frame_rate
+    fill 0, 255, 255 
+    rect(15, 900, 225, 20)
+    fill 255, 0 , 0 
+    text("Frame Rate: #{frame_rate}", 20, 915) 
   end
 end
 
