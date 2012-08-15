@@ -45,7 +45,7 @@ class Board
   end
 
   def contains?(position)
-    position[0].between?(-1, WIDTH - 1) && position[1].between?(-1, HEIGHT - 1)
+    position[0].between?(0, WIDTH - 1) && position[1].between?(0, HEIGHT - 1)
   end
 
   private

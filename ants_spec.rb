@@ -91,12 +91,28 @@ describe AntSimulation do
     board.black_cell_at?([50, 50]).should be_true
   end
 
-  it 'can tell when the ant is on the board' do
+  it 'detects when the ant is on the board' do
     simulation.ant_on_board?.should be_true
   end
 
-  it 'can tell when the ant is not on the board' do
-    ant.stub(:position).and_return([10, 100])
+  it 'detects when the ant is south of the board' do
+    ant.stub(:position).and_return([-1, 20])
     simulation.ant_on_board?.should be_false
   end
+
+  it 'detects when the ant is north of the board' do
+    ant.stub(:position).and_return([100, 20])
+    simulation.ant_on_board?.should be_false
+  end
+
+  it 'detects when the ant is east of the board' do
+    ant.stub(:position).and_return([20, 100])
+    simulation.ant_on_board?.should be_false
+  end
+
+  it 'detects when the ant is west of the board' do
+    ant.stub(:position).and_return([20, -1])
+    simulation.ant_on_board?.should be_false
+  end
+
 end
